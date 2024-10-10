@@ -13,9 +13,7 @@ int mystrlen(const char *s) {
 
 /* Create a copy of a string and return it */
 char *makecpy(const char *s) {
-    char *cpy = (char *)malloc(sizeof(char) * MAX_LEN); // todo: this doesn't work. I'll try with malloc later
-
-    while(*cpy++=*s++); 
+    char *cpy = (char *) malloc(MAX_LEN * sizeof(char));
 
     int i = 0;
     while (i < mystrlen(s)) {
@@ -23,6 +21,7 @@ char *makecpy(const char *s) {
         i++;
     }
     cpy[i] = '\0';
+
     return cpy;
 }
 
@@ -31,8 +30,6 @@ int main(void) {
     char *mycpy = makecpy(myString);
 
     printf("my copy is \"%s\"\n", mycpy);
-
     free(mycpy);
-
     return 0;
 }

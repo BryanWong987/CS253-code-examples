@@ -25,6 +25,8 @@ int main(void) {
 
     char input[11];
     char output[11];
+    input[0] = '\0';
+    printf(" %c", input[0]);
     printf("Enter a string\n");
     scanf("%10s", input);
 
@@ -35,3 +37,7 @@ int main(void) {
 
     return 0;
 }
+
+
+
+

@@ -19,5 +19,5 @@ int main(void) {
 
     printf("string palindrome test:\n\tstring1: %d\n\tstring2: %d\n", strpal(string1), strpal(string2));
 
-    printf("strings concatenated: %s\n", mystrcat(string1, string2));
+    printf("strings concatenated (reversed): %s\n", mystrcat(string1, string2));
 }

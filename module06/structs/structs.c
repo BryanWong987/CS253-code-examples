@@ -21,11 +21,11 @@ double distance(struct point p1, struct point p2) {
     return sqrt((double)((p2.x-p1.x)*(p2.x-p1.x)) + (double)((p2.y-p1.y)*(p2.y-p1.y)));
 }
 
-void swapPointX(struct point p1, struct point p2) {
+void swapPointX(struct point *p1, struct point *p2) {
 
-    int temp = p1.x; 
-    p1.x = p2.x; 
-    p2.x = temp;
+    int temp = (*p1).x; 
+    p1->x = p2->x; 
+    p2->x = temp;
 }
 
 int main(void) {
