@@ -10,14 +10,17 @@
 #include <stdlib.h>
 #include "SinglyLinkedList.h"
 #include "Job.h"
-#include "Item.h"
 
-ListPtr createList(void) {
+//TODO add the function pointers during construction! 
+ListPtr createList(char *(*toString)(const void *), void (*freeObject)(void *)) {
     ListPtr L = (ListPtr) malloc(sizeof(List));
+    L->head = NULL;
+    L->toString = toString;
+    L->freeObject = freeObject;
     return L;
 }
 
-NodePtr createNode(JobPtr item) {
+NodePtr createNode(void *item) {
     NodePtr N = (NodePtr) malloc(sizeof(Node));
     N->item = item;
     return N;
@@ -28,7 +31,7 @@ void freeNode(NodePtr node) {
     if (node == NULL) return;
 
     //free the job, then free the node
-    freeJob(node->item);
+    // TODO: freeJob(node->item);
     free(node);
 }
 
@@ -44,7 +47,7 @@ void printList(ListPtr L) {
     if (L == NULL) return;
     NodePtr n = L->head;
 	while (n) {
-        char *s = toString(n->item);
+        char *s = L->toString(n->item);
 		printf(" %s -->", s);
         free(s); //todo experiment removing this
 		n = n->next;
@@ -59,7 +62,8 @@ void freeList(ListPtr L) {
 	while (n) {
         NodePtr next = n->next;
         //free the job, free the node, move to next
-        freeJob(n->item);
+        // freeJob(n->item);
+        L->freeObject(n->item);
         free(n);
         n = next;
 	}

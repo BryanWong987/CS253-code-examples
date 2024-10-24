@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 	}
 	n = atoi(argv[1]);
 
-	L = createList();
+	L = createList(jobToString, freeJob);
 
 	for (i=0; i<n; i++) {
         j = createJob(i, " dummy job");

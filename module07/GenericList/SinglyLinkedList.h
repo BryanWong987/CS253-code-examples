@@ -5,7 +5,6 @@
 #include <stdlib.h>
 
 #include "Job.h"
-#include "Item.h"
 
 typedef struct node Node;
 typedef struct node *NodePtr;
@@ -14,21 +13,23 @@ typedef struct list List;
 typedef struct list *ListPtr;
 
 struct node {
-	JobPtr item;
+	void *item;
 	NodePtr next;
 };
 
 struct list {
 	NodePtr head;
+    char *(*toString)(const void *);
+    void (*freeObject)(void *);
 };
 
 /**
   Create a list
   @return a pointer to the new list
 */
-ListPtr createList(void);
+ListPtr createList(char *(*toString)(const void *), void (*freeObject)(void *));
 
-NodePtr createNode(JobPtr item);
+NodePtr createNode(void *item);
 
 void freeNode(NodePtr node);
 

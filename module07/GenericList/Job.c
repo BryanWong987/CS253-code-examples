@@ -9,16 +9,21 @@ JobPtr createJob(int jobid, char *info) {
     return newJob;
 }
 
-char *toString(JobPtr node) {
+//TODO the type! 
+char *jobToString(const void *job) {
+    JobPtr theRealJob = (JobPtr) job;
     char *temp;
-    temp = (char *) malloc(sizeof(char) * strlen(node->info) + 1 + MAXPID_DIGITS + 4);
-    sprintf(temp, "[%d] %s", node->jobid, node->info);
+    temp = (char *) malloc(sizeof(char) * strlen(theRealJob->info) + 1 + MAXPID_DIGITS + 4);
+    sprintf(temp, "[%d] %s", theRealJob->jobid, theRealJob->info);
     return temp;
 }
 
-void freeJob(JobPtr job) {
+//TODO the type! 
+void freeJob(void *job) {
     if (job == NULL)
 	return;
-    free(job->info);
-    free(job);
+
+    JobPtr theRealJob = (JobPtr) job;
+    free(theRealJob->info);
+    free(theRealJob);
 }

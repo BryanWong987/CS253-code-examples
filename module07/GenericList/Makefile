@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Wpointer-arith -Wstrict-prototypes -std=c99 -g
 
 build: SimpleTest
 
-SimpleTest: SimpleTest.o SinglyLinkedList.o Job.o Item.o
+SimpleTest: SimpleTest.o SinglyLinkedList.o Job.o
 	$(CC) $(CFLAGS) $^ -o $@ 
 
 test:
