@@ -6,11 +6,8 @@ CFLAGS = -Wall -Wextra -Wpointer-arith -Wstrict-prototypes -std=gnu99 -g
 
 build: main
 
-main: main.o ContactNode.o
+main: main.o
 	$(CC) $(CFLAGS) $^ -o $@ 
-
-mytests: mytests.o ContactNode.o
-	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
 	rm -f *.o *.d a.out mytests main

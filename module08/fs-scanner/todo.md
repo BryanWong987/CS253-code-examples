@@ -1,5 +1,5 @@
 # Problem Description
-Part 1 of the File System Scanner will take the lecture example of the File System Scanner, extend it to use getopt to process command line arguments, and stub out options to allow the user to specify sort and filter options from the commandline. A copy of the File System Scanner example has been provided int he LabWarmup directory.
+Part 1 of the File System Scanner will take the lecture example of the File System Scanner, extend it to use getopt to process command line arguments, and stub out options to allow the user to specify sort and filter options from the commandline.
 
 <br />
 1. Modify the File System Scanner to use getopt() functionality
