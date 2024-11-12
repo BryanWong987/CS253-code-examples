@@ -11,7 +11,7 @@
 
 void printUsage(const char *programName) {
     fprintf(stdout,"Usage: %s [-d <arg>] [-r] [-f]\n", programName);
-    fprintf(stdout,"\t-f <arg>  The directory to scan\n");
+    fprintf(stdout,"\t-d <arg>  The directory to scan\n");
     fprintf(stdout,"\t-r        count regular files\n");
     fprintf(stdout,"\t-f        count folders\n");
     fprintf(stdout,"\t-h        print this help\n");
@@ -31,12 +31,15 @@ int main(int argc, char *argv[]) {
         switch (opt) {
             case 'd':
                 printf("optarg is %s\n", optarg);
+                strcpy(directory, optarg);
                 break;
             case 'r':
                 printf("option r selected\n");
+                // printf("Number of regular files: %d\n" + numberOfRegularFiles);
                 break;
             case 'f':
                 printf("option f selected\n");
+                // printf("Number of folders: %d\n" + numberOfDirectories);
                 break;
             case 'h':
                 printUsage(argv[0]);
@@ -58,10 +61,17 @@ int main(int argc, char *argv[]) {
 
     // Read entries from the directory
     while ((entry = readdir(dir)) != NULL) {
-        //TODO
+        if ((entry->d_type) == DT_DIR) {
+            numberOfDirectories++;
+        } else if ((entry->d_type) == DT_REG) {
+            numberOfRegularFiles++;
+        }
     }
 
     //print results
+    printf("Number of regular files: %d\n" + numberOfRegularFiles);
+    printf("Number of folders: %d\n" + numberOfDirectories);
+
 
     // Check for read errors
     if (errno != 0) {
